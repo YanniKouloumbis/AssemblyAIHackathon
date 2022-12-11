@@ -48,7 +48,7 @@ const Chat = ({transcript, progressRef, isPaused}) => {
       setMessages((old) => [...old, { from: "computer", text: "Have any questions?" }]);
     }
   }, [isPaused]);
-  
+
 
   const handleSendMessage =  async () => {
     if (!inputMessage.trim().length) {
