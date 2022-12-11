@@ -1,34 +1,20 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+#Inspiration
+Yanni and I are freshman at Cornell and MIT respectively. A few years ago, we were going to the same high school when COVID hit and the classroom became our bedroom. Teachers struggled to replicate the interactivity of the classroom and learning outcomes out our school suffered. We realized how important the experience of "raising you hand" was to the classroom environment. Fast forward to today and Yanni and I are studying Artificial Intelligence in college. We observed the public excitement over LLM's and their ability to answer questions. While brainstorming for this hackathon, we realized we could harness LLM's to bring the interactivity of the classroom to every laptop around the world. We envision future where students of all backgrounds have access to a personalized AI assistant.
 
-## Getting Started
+#What it does
+Pupil is a chrome extension that links to an AI chatbot which answers questions about educational videos. Whenever the student pauses the video Pupil will ask them if they have any questions. The AI has access to transcript information about the video, so its responses consider the section of the video the student is currently watching. Therefore, Pupil's responses are relevant and accurate.
 
-First, run the development server:
+#How we built it
+We build a simple Chrome extension that redirects users to a NextJS WebApp. Here, the user can watch an embedded video and interface with the chat.
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+#Challenges we ran into
+We ran out of time to implement the voice controls. Initially we hoped to allow the user to speak questions using their mic and receive answers through AI voice (assembly realtime + huggingface TTS). We believe this conversational paradigm is important and we will be implementing it shortly after the hackathon.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+#Accomplishments that we're proud of
+We're proud to have worked on a project with contributes to something we are personally passionate about. We're excited to keep working on this project.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+#What we learned
+We learned how to build a cohesive chat experience using LLM's and develop chrome extensions.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+#What's next for Pupil.ai
+We will be submitting to the Future Finders Government challenge, a $1 million U.S. Department of Education challenge to reimagine career navigation for adult learners. We're confident we can convey our vision that AI learning assistants have a place in the future of US education.
