@@ -1,4 +1,4 @@
-import { Flex, Avatar, Spinner, Button } from "@chakra-ui/react";
+import { Flex, Avatar, Spinner, Button, Box } from "@chakra-ui/react";
 import React, { useState, useEffect } from "react";
 const { Configuration, OpenAIApi } = require("openai");
 import Divider from "../components/Divider";
@@ -31,7 +31,7 @@ const Chat = ({transcript, progressRef, isPaused}) => {
   });
   const openai = new OpenAIApi(configuration);  
   const [messages, setMessages] = useState([
-    { from: "computer", text: "Hi, I'm Pupil.AI, your personal learning assistant. Please pause the video and ask me a question any time!" },
+    { from: "computer", text: "Hi! I'm Pupil.ai, your personal learning assistant. Please pause the video and ask me a question any time!" },
   ]);
   const [inputMessage, setInputMessage] = useState("");
   const [canPlay, setCanPlay] = useState(false);
@@ -43,13 +43,21 @@ const Chat = ({transcript, progressRef, isPaused}) => {
     if(isPaused){
       console.log('paused att ' + progressRef.current)
       
-      setVideoContext(getTranscriptInTimeWindow(transcript, progressRef.current*1000, 20000)['transcript']['sentences'])
+      setVideoContext(getTranscriptInTimeWindow(transcript, progressRef.current*1000, 30000)['transcript']['sentences'])
       console.log(videoContext)
-      setMessages((old) => [...old, { from: "computer", text: "Have any questions?" }]);
+      // if last message is from computer, don't add a new one
+      if (messages[messages.length - 1]['from'] != "computer" || messages.length == 1) {
+        console.log(messages[messages.length - 1])
+        setMessages((old) => [...old, { from: "computer", text: "I see you've paused, have any questions?" }]);
+      }
     }
   }, [isPaused]);
+<<<<<<< HEAD
+  
+=======
 
 
+>>>>>>> 14be18fc58df1b115acb0114fcb983cf751a6350
   const handleSendMessage =  async () => {
     if (!inputMessage.trim().length) {
       return;
@@ -74,17 +82,16 @@ const Chat = ({transcript, progressRef, isPaused}) => {
     //GTP3 OpenAI Call
     //set researcherResponse to the response from GPT3
     //multiline string
-    const prompt = `You are an knowing god responding to an inquiry by a single user, who wants to learn more
-    about a particular aspect of a video. The user is currently ${progressRef.current} milliseconds into the video. Below is the transcript of the surrounding portion of the video:
+    const prompt = `You are educational assistant responding to an inquiry by a single student, who has a question about a particular aspect of a video. The user is currently ${progressRef.current} seconds into the video. Use the transcript and your own knowledge to answer the student's question. Below is the transcript of the surrounding portion of the video:
 
-    Transcript:
-    ${videoContext}
+    Transcript: (List of sentence objects with start and end times in milliseconds)
+    ${JSON.stringify(videoContext)}
 
     Below is the question, please answer it in JSON format. Only answer the question asked. Answer as
     specifically as possible. Prioritize direct answers in displaying information.
     
     {"question": "${question}", "answer":`;
-  
+    console.log(prompt)
     const response = await openai.createCompletion({
         model: "text-davinci-003",
         prompt,
@@ -110,21 +117,18 @@ const Chat = ({transcript, progressRef, isPaused}) => {
   
 
   return (
-    <Flex w="100%" h="100vh" justify="center" align="center">
-      <Flex w={["100%", "100%", "40%"]} h="90%" flexDir="column">
+    <Flex w="100%" h="100vh" bg="white" alignItems="center" justify={"center"} p={3} flexDir="column">
+      <Flex w="100%" borderWidth={1} borderColor={"gray.100"} borderRadius={4} shadow={"sm"} flexDir="column">
         <Messages messages={messages} loading={loading} />
-        <Divider />
+        {/* <Divider /> */}
         <Footer
           inputMessage={inputMessage}
           setInputMessage={setInputMessage}
           handleSendMessage={handleSendMessage}
         />
-      </Flex>
+        </Flex>
     </Flex>
   );
 };
-
-
-
 
 export default Chat;

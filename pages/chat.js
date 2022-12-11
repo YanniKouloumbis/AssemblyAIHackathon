@@ -1,8 +1,9 @@
-import { HStack, Box, Center, SimpleGrid, Spinner } from '@chakra-ui/react';
+import { HStack, Box, Center, SimpleGrid, Spinner, VStack, Text, Spacer, Flex } from '@chakra-ui/react';
 import ReactPlayer from 'react-player'
 import Chat from '../components/chat'
 import { useRouter } from 'next/router'
 import React, { useState, useEffect, useRef } from "react";
+
 
 // Render a YouTube video player
 //<ReactPlayer url='https://www.youtube.com/watch?v=ysz5S6PUM-U' />
@@ -44,25 +45,55 @@ export default function Home() {
   const progressRef = useRef();
   //"http://example.com/index.html?url=" + encodeURIComponent(myUrl);
   return (
-    <HStack>
-        <ReactPlayer url={url} controls={true}
-        onProgress={e => {
-          progressRef.current = e.playedSeconds;
-        }}
-        onPause={e => {
-          setPaused(true)
-        }}
-        onPlay={e => {
-          setPaused(false)
-        }}
-        //access through progressRef.current, send that down to chat component
-        //MAKE SURE TO USE progressRef.current
-        ></ReactPlayer >
-        <Chat transcript={transcript} progressRef={progressRef} isPaused={paused}/>
-        {loadingTranscript ? (
-        <Spinner></Spinner>
-        ) : (
-          <h1>Transcript Ready</h1>
-        )}
-    </HStack>);
+    // <VStack>
+    // <HStack>
+    //     <div className="player-wrapper">
+    //     <ReactPlayer url={url} controls={true}
+    //       className="react-player"
+          
+    //       onProgress={e => {
+    //         progressRef.current = e.playedSeconds;
+    //       }}
+    //       onPause={e => {
+    //         setPaused(true)
+    //       }}
+    //       onPlay={e => {
+    //         setPaused(false)
+    //       }}
+    //       //access through progressRef.current, send that down to chat component
+    //       //MAKE SURE TO USE progressRef.current
+    //       ></ReactPlayer >
+    //     </div>
+    //     <Chat transcript={transcript} progressRef={progressRef} isPaused={paused} />
+    // </HStack>
+    // {loadingTranscript ? (
+    //     <Spinner></Spinner>
+    //     ) : (
+    //       <Text>Transcript Ready</Text>
+    //     )}
+    // </VStack>);
+    <Flex color='white'>
+  <Center w='100%' h='100%'>
+   <div className="player-wrapper">
+         <ReactPlayer url={url} controls={true}
+           className="react-player"
+           onProgress={e => {
+             progressRef.current = e.playedSeconds;
+           }}
+           onPause={e => {
+             setPaused(true)
+           }}
+           onPlay={e => {
+             setPaused(false)
+           }}
+           //access through progressRef.current, send that down to chat component
+           //MAKE SURE TO USE progressRef.current
+           ></ReactPlayer >
+         </div> 
+         <Chat transcript={transcript} progressRef={progressRef} isPaused={paused} />
+  </Center>
+    
+  
+</Flex>
+  );
 }
