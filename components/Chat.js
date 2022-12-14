@@ -27,7 +27,7 @@ function removeWordsFromTranscript(transcriptDict) {
 
 const Chat = ({transcript, progressRef, isPaused}) => {
   const configuration = new Configuration({
-    apiKey: "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",
+    apiKey: "..."
   });
   const openai = new OpenAIApi(configuration);  
   const [messages, setMessages] = useState([
