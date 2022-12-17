@@ -1,0 +1,23 @@
+{
+    "manifest_version": 3,
+    "name": "Pupil AI assistant",
+    "description": "A minimal example of a chrome extension using manifest v3",
+    "version": "0.0.1",
+    "icons": {
+        "16": "logo/16.png",
+        "48": "logo/48.png",
+        "128": "logo/128.png"
+    },
+    "options_page": "settings/settings.html",
+    "action": {
+        "default_title": "Chrome Addon v3 Starter",
+        "default_popup": "popup/popup.html"
+    },
+    "permissions": ["activeTab"],
+    "host_permissions": [
+        "<all_urls>"
+    ],
+    "background": {
+        "service_worker": "service-worker.js"
+    }
+}
